@@ -42,7 +42,7 @@ Looking at the album names, the Rolling Stone album name was more generic, while
 Finally, we created  3 tables in Postgres: a rolling_stone table, a pitchfork_reviews table, and a merged table of all 500 Rolling Stone albums with the matching Pitchfork reviews.  
 
 ## **Files used:**
-- Jupyter Notebook to perform the Extract/Transform/Load:  etl_john_2.19.ipynb
+- Jupyter Notebook to perform the Extract/Transform/Load:  etl_notebook_final.ipynb
 - Rolling Stone 500 Albums:                               \Resources\albumlist.csv  
 - Pitchfork Reviews:                                       \Resources\database.sqlite
 - Postgres database schema:                                schema.sql
