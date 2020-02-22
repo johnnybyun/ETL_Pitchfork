@@ -1,24 +1,19 @@
-# ETL Pitchfork Project Report
+# **ETL Pitchfork Project Report**
 
-Rolling Stone Magazine:
-<!--![Image of Rolling Stone]
-(https://lh3.googleusercontent.com/proxy/zJc85AzYK0YeFmDrEAXiaSRGysj5k2SdZ5PbQl0zX_UGOh6oEjxmBpamYUrAmHDreVIYKFQLOzszyjyXQu-yFPkSydmScHv1pR54Jh-Kv0O-5M5DSJQ) -->
-<img src="https://lh3.googleusercontent.com/proxy/zJc85AzYK0YeFmDrEAXiaSRGysj5k2SdZ5PbQl0zX_UGOh6oEjxmBpamYUrAmHDreVIYKFQLOzszyjyXQu-yFPkSydmScHv1pR54Jh-Kv0O-5M5DSJQ" width="200">
 
-Pitchfork:
-<!--![Image of Pitchfork](https://image.flaticon.com/icons/svg/96/96351.svg)-->
-<img src="https://image.flaticon.com/icons/svg/96/96351.svg" width="200">
+<img src="assets\rolling_stone_icon.png" width="200"> <img src="assets\plus-sign-png.png" width="50"> <img src="assets\pitchfork.svg" width="200">
 
-## Team Members:  Satvik Ajmera, John Byun, Molly Cox
+## **Team Members:  Satvik Ajmera, John Byun, Molly Cox**
 
-## Project Description:
+## **Project Description:**
 We chose 2 datasets found on Kaggle:  a .csv file with *__Rolling Stone Magazine's top 500 albums of all time__*, 
 and a .sqlite database of online magazine *__Pitchfork's__* album reviews.  The goal was to join the Rolling Stones Albums
 to the corresponding Pitchfork reviews.
 
-Pitchfork data can be found at:  	https://www.kaggle.com/nolanbconaway/pitchfork-data
-Rolling Stone data can be found at: https://www.kaggle.com/notgibs/500-greatest-albums-of-all-time-rolling-stone 
+Pitchfork data can be found at:  	https://www.kaggle.com/nolanbconaway/pitchfork-data  
+Rolling Stone data can be found at: https://www.kaggle.com/notgibs/500-greatest-albums-of-all-time-rolling-stone   
 
+## **E**xtracting Data
 First, we loaded the Pitchfork data into a Pandas dataframe.  For the sqlite database, we imported sqlite3 to read the files.
 The database contains 6 tables, each with a review id to link all the files together.  We selected fields from the
 reviews table (reviewid, title, artist, url, score, author, and pub_date) and the genres table (genre), joining the 
@@ -29,6 +24,7 @@ From this dataset, we were interested in 5 fields (Number, Year, Album, Artist, 
 Once the data was loaded into pandas dataframes, we renamed some of the columns for consistency. The Pitchfork table had duplicate review ids, 
 so we dropped the duplicates.
 
+## **T**ransforming Data
 The tricky part came next: 
 
 In order to join the tables on album name, it was apparent from an initial glance that the album name data would need to be cleaned before attempting a merge.  First, we would need to match cases.  We lowercased the album names in the Rolling Stone table to match the all-lowercase Pitchfork data.  We tried the merge and came up with only 93 matches.  Furthermore, many of those were false matches because of cases where different artists used the same album names (e.g. "greatest hits", etc.).  To resolve this, we concatenated the artist names with album names to generate more unique values.  Also we removed whitespaces and non alphanumeric characters to minimize the effect of punctuation and spacing differences.  This time we got 94 matches,  but these were true exact matches which was an improvement of about 10%.  
@@ -42,6 +38,12 @@ Looking at the artist names, out of the 289 unique artist names, 165 were found 
 Looking at the album names, the Rolling Stone album name was more generic, while the Pitchfork album name added words like 
 ":40th Anniversary addition" and "Deluxe Addition". Can these be considered the same albums?
 
-Finally, we created tables in Postgres, and loaded the merged dataset into that database.
+## **L**oading Data
+Finally, we created  3 tables in Postgres: a rolling_stone table, a pitchfork_reviews table, and a merged table of all 500 Rolling Stone albums with the matching Pitchfork reviews.  
 
-Jupyter Notebook to perform the Extract/Transform/Load:  etl_john_2.19.ipynb
+## **Files used:**
+- Jupyter Notebook to perform the Extract/Transform/Load:  etl_john_2.19.ipynb
+- Rolling Stone 500 Albums:                               \Resources\albumlist.csv  
+- Pitchfork Reviews:                                       \Resources\database.sqlite
+- Postgres database schema:                                schema.sql
+- Postgres database:                                       etl_music_db
