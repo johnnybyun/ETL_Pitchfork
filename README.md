@@ -34,7 +34,7 @@ We could see just from visual inspection of the data that there were many more a
 Looking at the artist names, out of the 289 unique artist names, 165 were found in the Pitchfork database. This is another reason for the low match rate.
 
 ## **L**oading Data
-Finally, we created  3 tables in Postgres: a rolling_stone table, a pitchfork_reviews table, and a merged table of all 500 Rolling Stone albums with the matching Pitchfork reviews.  
+Finally, we created  3 tables in Postgres: a rolling_stone table, a pitchfork_reviews table, and a merged_table of all 500 Rolling Stone albums with the matching Pitchfork reviews.  
 
 ## **Files used:**
 - Jupyter Notebook to perform the Extract/Transform/Load:  etl_notebook_final.ipynb
