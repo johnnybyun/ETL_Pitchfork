@@ -11,7 +11,7 @@ Pitchfork:
 
 ## Team Members:  Satvik Ajmera, John Byun, Molly Cox
 
-##Project Description:
+## Project Description:
 We chose 2 datasets found on Kaggle:  a .csv file with *__Rolling Stone Magazine's top 500 albums of all time__*, 
 and a .sqlite database of online magazine *__Pitchfork's__* album reviews.  The goal was to join the Rolling Stones Albums
 to the corresponding Pitchfork reviews.
