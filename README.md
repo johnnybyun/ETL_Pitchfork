@@ -31,12 +31,7 @@ In order to join the tables on album name, it was apparent from an initial glanc
 
 We could see just from visual inspection of the data that there were many more albums that were not being matched due to slight differences in the way the albums were named in each table (e.g. "princepurplerain" vs "princepurpleraindeluxeedition").  We did some googling to see if there were any tools that could match strings that are similar but not exactly the same. We found a library called "fuzzywuzzy" that, given two strings, outputs a so called "Levenshtein distance" (which is a similarity score between -1 and 100, with 100 being an exact match) and pulls in all matches above a threshold that you choose.  We first chose a threshold of 65, which pulled in 249 matches but there were many false matches.  We tried again with a threshold of 80, which pulled in 121 matches.  This resulted in 10 false matches.  So we manually dropped the 10 falsely matched rows and ended up with 111 matches, which was another 15%.  We were now at about 25% improvement from our starting point we decided to stop here and just move on with our project. 
 
-Rolling Stone row with a matching Pitchfork row. Out of the 500 artists/albums in the Rolling Stones dataset, we found only 93 matches.
-We kept all 500 Rolling Stone rows and added the Pitchfork data if it matched.
-
-Looking at the artist names, out of the 289 unique artist names, 165 were found in the Pitchfork database.
-Looking at the album names, the Rolling Stone album name was more generic, while the Pitchfork album name added words like 
-":40th Anniversary addition" and "Deluxe Addition". Can these be considered the same albums?
+Looking at the artist names, out of the 289 unique artist names, 165 were found in the Pitchfork database. This is another reason for the low match rate.
 
 ## **L**oading Data
 Finally, we created  3 tables in Postgres: a rolling_stone table, a pitchfork_reviews table, and a merged table of all 500 Rolling Stone albums with the matching Pitchfork reviews.  
