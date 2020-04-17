@@ -1,7 +1,9 @@
 # **ETL Pitchfork Project Report**
 
 
-<img src="assets\rolling_stone_icon.png" width="200"> <img src="assets\plus-sign-png.png" width="50"> <img src="assets\pitchfork.svg" width="200">
+![rolling-stones](assets/rolling_stone_icon.png)
+![plus-sign](assets/plus-sign-png.png)
+![pitchfork](assets/pitchfork.jpg)
 
 ## **Team Members:  Satvik Ajmera, John Byun, Molly Cox**
 
